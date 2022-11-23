@@ -12,4 +12,3 @@ install: <br>
 launch: <br>
 <b>"bash script.sh"</b> and wait results in folder "output"... repeat<br>
 <hr><hr>
-*it is for linux, but all libs cross-plotform, check docs
