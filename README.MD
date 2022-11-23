@@ -1,0 +1,1 @@
+gcc interpretator.c `sdl2-config --cflags` -o interpretator `sdl2-config --libs`
