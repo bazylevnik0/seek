@@ -37,6 +37,10 @@ int main (int argc, char** argv)
         exit(EXIT_FAILURE);
 
     read = getline(&line, &len, fp);
+    char url[100];
+    strcpy(url,line);
+   
+    read = getline(&line, &len, fp);
     int counter_a =  atoi(line);
     int counter_b = 1;
     while ((read = getline(&line, &len, fp)) != -1) {
@@ -165,11 +169,34 @@ int main (int argc, char** argv)
     if (line)
         free(line);
     
+   
+   
+    // Create an empty RGB surface that will be used to create the screenshot bmp file
+   SDL_Surface* pScreenShot = SDL_CreateRGBSurface(0, 640, 480, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+
+   if(pScreenShot)
+   {
+      // Read the pixels from the current render target and save them onto the surface
+      SDL_RenderReadPixels(renderer, NULL, SDL_PIXELFORMAT_ARGB8888, pScreenShot->pixels, pScreenShot->pitch);
+      // Create the bmp screenshot file
+      char temp[100] = "";
+      strcat(temp,"output/");
+      strcat(temp,"(");
+      url[strlen(url)-1]='\0';
+      strcat(temp,url);
+      strcat(temp,")");
+      strcat(temp,".bmp");
+      SDL_SaveBMP(pScreenShot, temp);
+      // Destroy the screenshot surface
+      SDL_FreeSurface(pScreenShot);
+   }
+
     // Render the rect to the screen
     SDL_RenderPresent(renderer);
 
-    // Wait for 5 sec
-    SDL_Delay( 5000 );
+
+    // Wait for 1 sec
+    SDL_Delay( 100 );
 
     SDL_DestroyWindow(window);
     SDL_Quit();

@@ -1,8 +1,9 @@
+import sys
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://4chan.org/"
-page = requests.get(URL)
+URL = "http://" + sys.argv[1]
+page = requests.get(URL,headers={"Host": "www.google.com"})
 
 
 soup = BeautifulSoup(page.content, "html.parser")
@@ -87,7 +88,7 @@ for el in title:
          temp += "white smoke\n"
          counter += 1 
     
-temp = str(counter) + '\n' + temp
+temp = sys.argv[1] + '\n' + str(counter) + '\n' + temp
 print(temp)
 
 text_file = open("temp.txt", "w")
