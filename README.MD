@@ -10,6 +10,6 @@ install: <br>
 4) Compile interpretator: "<b>gcc interpretator.c `sdl2-config --cflags` -o interpretator `sdl2-config --libs`</b>"<br>
 <hr>
 launch: <br>
-<b>bash script.sh</b> and wait results in folder "output"... repeat<br>
+<b>"bash script.sh"</b> and wait results in folder "output"... repeat<br>
 <hr><hr>
 *it is for linux, but all libs cross-plotform, check docs
