@@ -2,15 +2,18 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
+#url from command line arg
 URL = "http://" + sys.argv[1]
 page = requests.get(URL,headers={"Host": "www.google.com"})
 
 
 soup = BeautifulSoup(page.content, "html.parser")
 
+#get title
 title = soup.title.get_text().lower()
 temp = ""
 counter = 0
+#for each letter in title -> convert to color and add to temp
 for el in title:
     if (el == 'a'):
          temp += "crimson\n"
@@ -88,9 +91,11 @@ for el in title:
          temp += "white smoke\n"
          counter += 1 
     
+#shape temp
 temp = sys.argv[1] + '\n' + str(counter) + '\n' + temp
 print(temp)
 
+#write temp to file
 text_file = open("temp.txt", "w")
 text_file.write(temp)
 text_file.close()

@@ -36,13 +36,16 @@ int main (int argc, char** argv)
     if (fp == NULL)
         exit(EXIT_FAILURE);
 
+    //read first string with url
     read = getline(&line, &len, fp);
     char url[100];
     strcpy(url,line);
    
+    //read second string with file length
     read = getline(&line, &len, fp);
     int counter_a =  atoi(line);
     int counter_b = 1;
+    //read color and draw
     while ((read = getline(&line, &len, fp)) != -1) {
         // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
         SDL_Rect r;
@@ -165,13 +168,14 @@ int main (int argc, char** argv)
         counter_b++;
     }
 
+    //close file and clear line
     fclose(fp);
     if (line)
         free(line);
     
    
-   
-    // Create an empty RGB surface that will be used to create the screenshot bmp file
+   //make screenshot
+   // Create an empty RGB surface that will be used to create the screenshot bmp file
    SDL_Surface* pScreenShot = SDL_CreateRGBSurface(0, 640, 480, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
    if(pScreenShot)
